@@ -1,69 +1,98 @@
-# React + TypeScript + Vite
+# HyPeg 🎯
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+> HYPE ecosystem peg monitor for LSTs and vaults, tracking arbitrage opportunities powered by Pyth.
 
-Currently, two official plugins are available:
+[![Live Demo](https://img.shields.io/badge/Live-Demo-blue)](https://hypeg.vercel.app)
+[![Powered by Pyth](https://img.shields.io/badge/Powered%20by-Pyth-orange)](https://pyth.network/)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+<p align="center">
+  <img src="public/logo.svg" alt="HyPeg Logo" width="200"/>
+</p>
 
-## Expanding the ESLint configuration
+## 🚀 Features
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+### Real-time Price Monitoring
+- Integrated with Pyth's Hermes API for direct price feeds
+- Auto-refresh every 10 seconds
+- Multiple token support (HYPE, kHYPE, haHYPE, LHYPE, MHYPE, stHYPE)
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+### Arbitrage Opportunity Detection
+- Automated peg deviation calculations
+- Visual alerts for profitable opportunities
+- Step-by-step arbitrage guides
+- Direct links to trading platforms
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+### User-Friendly Interface
+- Clean, modern dashboard design
+- Color-coded status indicators
+- Dark/light mode support
+- Responsive layout
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+## 🛠 Technical Implementation
+
+### Price Feed Integration
+```typescript
+// Example of price normalization using Pyth
+export const normalizePythPrice = (pythPrice: PythPrice): number => {
+  const price = BigInt(pythPrice.price);
+  const expo = pythPrice.expo;
+  return Number(price) * Math.pow(10, expo);
+};
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+### Supported Tokens
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+| Token | Type | Description |
+|-------|------|-------------|
+| HYPE | Reference | Base HYPE token |
+| kHYPE | LST | Kinetiq Liquid Staking |
+| haHYPE | Vault | Harmonix Vault Token |
+| LHYPE | Vault | Looping Collective Vault |
+| MHYPE | LST | Magpie Liquid Staking |
+| stHYPE | LST | StakedHYPE Token |
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+## 🏃‍♂️ Quick Start
+
+1. Clone the repository
+```bash
+git clone https://github.com/RickYoon/hypeg.git
 ```
+
+2. Install dependencies
+```bash
+cd hypeg
+npm install
+```
+
+3. Start development server
+```bash
+npm run dev
+```
+
+## 🌟 Why HyPeg?
+
+HyPeg democratizes arbitrage opportunities in the HYPE ecosystem by:
+- Converting complex price data into actionable insights
+- Providing real-time monitoring of peg status
+- Enabling users to quickly identify and act on price inefficiencies
+- Contributing to overall market efficiency
+
+## 🔗 Links
+
+- [Live Demo](https://hypeg.vercel.app)
+- [GitHub Repository](https://github.com/RickYoon/hypeg)
+
+## 🛠 Built With
+
+- [React](https://reactjs.org/)
+- [Vite](https://vitejs.dev/)
+- [Chakra UI](https://chakra-ui.com/)
+- [Pyth Network](https://pyth.network/)
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+---
+
+Built with ❤️ for the HYPE ecosystem
